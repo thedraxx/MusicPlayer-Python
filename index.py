@@ -3,9 +3,7 @@ from tkinter import *
 from tkinter import filedialog, ttk
 from pygame import mixer
 class musica:
-
     def __init__(self, ventana):
-
         # Estas variables sirve para controlar la app
         self.repro_musica = False
         self.musica_a_reproducir = ''
@@ -20,36 +18,35 @@ class musica:
         ventana.config(menu=barra_menu)
 
         # Que esta reproduciendo
-
         self.ReproduciendoLabel = Label(
             ventana, text="No estas reproduciendo nada", bg="black", fg="white", font=("Arial", 20))
         self.ReproduciendoLabel.config(
             bg="black", fg="white", font=("Arial", 12))
-        self.ReproduciendoLabel.config(width=50, height=10, border=0)
-        self.ReproduciendoLabel.place(x=77, y=500)
+        self.ReproduciendoLabel.config(width=50, height=5, border=0)
+        self.ReproduciendoLabel.place(x=77, y=440)
 
         # Boton Pausa
         self.pause = Button(ventana, text="⏸", bg="white",
                             fg="black", font=("Arial", 20), command=self.pausa)
-        self.pause.place(x=16, y=780)
+        self.pause.place(x=16,y=590)
         self.pause.config(width=8, height=2)
 
         # Boton Reproducir
         self.play = Button(ventana, text="▶️", bg="white", fg="black", font=(
             "Arial", 20), command=self.reproducir)
-        self.play.place(x=150, y=780)
+        self.play.place(x=150,y=590)
         self.play.config(width=10, height=2)
 
     # Boton Reiniciar
         self.reset = Button(ventana, text="↻", bg="white",
                             fg="black", font=("Arial", 20), command=self.reset)
-        self.reset.place(x=300, y=780)
+        self.reset.place(x=300,y=590)
         self.reset.config(width=10, height=2)
 
     # Boton Abrir
         self.open = Button(ventana, text="📁", bg="white",
                            fg="black", font=("Arial", 20), command=self.abrir)
-        self.open.place(x=450, y=780)
+        self.open.place(x=450,y=590)
         self.open.config(width=8, height=2)
 
     # Funciones
@@ -63,8 +60,8 @@ class musica:
             ventana, text=self.nombre_musica, bg="black", fg="white", font=("Arial", 20))
         self.ReproduciendoLabel.config(
             bg="black", fg="white", font=("Arial", 12))
-        self.ReproduciendoLabel.config(width=50, height=10, border=0)
-        self.ReproduciendoLabel.place(x=77, y=500)
+        self.ReproduciendoLabel.config(width=50, height=5, border=0)
+        self.ReproduciendoLabel.place(x=77, y=440)
 
      # Esta funcion reproduce la cancion
     def reproducir(self):
@@ -74,6 +71,7 @@ class musica:
             self.play["state"] = DISABLED
             self.repro_musica = True
 
+    # Esta funcion Pausa la cancion
     def pausa(self):
         # Si esta repro_musica es true quiere decir que esta reproduciendo
         if self.repro_musica:
@@ -86,10 +84,12 @@ class musica:
             self.repro_musica = True
             self.pause.config(text="⏸")
 
+    # Reinicia la cancion
     def reset(self):
         mixer.music.stop()
         mixer.music.load(self.musica_a_reproducir)
         mixer.music.play()
+        # Volvemos a poner repro_musica en true para que se pueda pausar
         self.repro_musica = True
 
     def guia_de_uso(self):
@@ -111,20 +111,19 @@ class musica:
 # Elementos Pantalla
 ventana = Tk()
 ventana.iconbitmap(
-    'C:\\Users\\thedr\\OneDrive\\Desktop\\Trabajo Practico Final Tkinter\\assets\\img\\icono.ico')
+    '.\\assets\\img\\icono.ico')
 ventana.resizable(0, 0)
 imagen = PhotoImage(
-    file="C:\\Users\\thedr\\OneDrive\\Desktop\\Trabajo Practico Final Tkinter\\assets\\img\\portada.png")
+    file=".\\assets\\img\\portada.png")
 
 imagenLogo = PhotoImage(
-    file="C:\\Users\\thedr\\OneDrive\\Desktop\\Trabajo Practico Final Tkinter\\assets\\img\\headset.png")
+    file=".\\assets\\img\\headset.png")
 Label(ventana, image=imagen).place(x=0, y=0)
 Label(ventana, image=imagenLogo).place(x=180, y=120)
 
 # Titulo de la ventana
-
 ventana.title('Reproductor de Audio')
-ventana.geometry("600x900")
+ventana.geometry("600x700")
 ventana.config(bg="gray", bd=0)
 ventana.configure(bg="black")
 
